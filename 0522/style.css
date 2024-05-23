@@ -1,0 +1,19 @@
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid black;
+  position: relative;
+  padding: 12px;
+  margin-bottom: 12px;
+  width: 800px;
+}
+
+.extra-info {
+  color: gray;
+  text-align: right;
+} 
