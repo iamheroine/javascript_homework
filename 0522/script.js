@@ -96,3 +96,34 @@ let filteredProducts = newProductData.filter((product) => product.id !== 1);
 
 // 변경된 products 배열을 로컬 스토리지 products 데이터로 덮어씌워 저장
 localStorage.setItem("products", JSON.stringify(filteredProducts));
+
+// 문제 1
+// 화면에 뿌리고 싶은 곳 선택
+const postsContainer = document.querySelector(".posts-container");
+
+// 데이터 가져와서 가져온 데이터 원하는 레이아웃으로 화면에 뿌리기
+fetch("https://jsonplaceholder.typicode.com/posts")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+
+    // 가져온 데이터 배열 안의 각 객체에서 원하는 키값만 사용할 수 있도록 순회하기
+    data.forEach((post) => {
+      // html 그리기
+      postsContainer.insertAdjacentHTML(
+        "beforeend",
+        `
+          <div class="card">
+            <div class="extra-info">
+              <div>사용자ID: ${post.userId}</div>
+              <div>게시물 번호: ${post.id}</div>
+            </div>
+            <h3 class="title">제목</h3>
+            <div>${post.title}</div>
+            <h3 class="content">내용</h3>
+            <p>${post.body}</p>
+          </div>
+        `
+      );
+    });
+  });
